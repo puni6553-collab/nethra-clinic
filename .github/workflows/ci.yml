@@ -1,0 +1,173 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # ---------------------------------------------------------------- rules ---
+  # Pure rules-engine replay: 38 checks, no server, no LLM key, < 5 s.
+  # It deletes backend/netracare.db on a fresh runner, so it runs in its
+  # own job, never alongside a live server.
+  rules:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Install Python dependencies
+        run: python -m pip install -r requirements.txt
+
+      - name: Verify rules engine (tests/verify_rules.py)
+        working-directory: backend
+        run: python tests/verify_rules.py
+
+  # ------------------------------------------------------------- frontend ---
+  # Vite production build — the only frontend check that exists (no lint or
+  # test scripts in package.json). frontend/dist is gitignored, so CI is
+  # the place where a broken JSX import actually gets caught.
+  frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install frontend dependencies
+        working-directory: frontend
+        run: npm ci
+
+      - name: Build frontend (vite build)
+        working-directory: frontend
+        run: npm run build
+
+  # ------------------------------------------------------------------ api ---
+  # Boots the FastAPI app on :8000 and runs the HTTP suites against it.
+  #
+  # LLM handling: the runner has no .env, so GEMINI_API_KEY is whatever the
+  # repo secret is (empty when unset). With no key the red-flag gate answers
+  # 503 REDFLAG_CHECK_FAILED and every booking-dependent check degrades to
+  # SKIP, so the suite still exits 0 — the non-LLM checks still run for
+  # real. When the GEMINI_API_KEY secret IS configured, the job also builds
+  # the chat index and runs the chat/agent suites.
+  #
+  # Suites excluded on purpose (free-tier quota, run manually per AGENTS.md):
+  #   check_redflag.py (35 dedicated calls + 65 s quota sleeps)
+  #   run_evals.py     (100-200+ calls, 10-30 min)
+  #   check_lab.py / check_skills.py (30-80 calls each)
+  api:
+    needs: rules
+    runs-on: ubuntu-latest
+    env:
+      LLM_MODEL: gemini-3.5-flash-lite
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Install Python dependencies
+        run: python -m pip install -r requirements.txt
+
+      - name: Start API on :8000 (no --reload)
+        working-directory: backend
+        run: |
+          nohup python -m uvicorn app.main:app --host 127.0.0.1 --port 8000 \
+            > /tmp/netracare-api.log 2>&1 &
+          echo $! > /tmp/netracare-api.pid
+
+      - name: Wait for the API to answer
+        run: |
+          for i in $(seq 1 60); do
+            if curl -sf http://127.0.0.1:8000/docs > /dev/null; then
+              echo "API is up (attempt $i)"
+              exit 0
+            fi
+            sleep 2
+          done
+          echo "::error::API did not come up in 120 s"
+          cat /tmp/netracare-api.log
+          exit 1
+
+      # Suites that do not need the LLM. Each file is guarded: suites that
+      # are not committed yet (check_approvals, check_leave, check_mcp, ...)
+      # are reported as skipped, and light up automatically once committed.
+      # All suites run even if an earlier one fails; failures are collected
+      # and reported at the end so one red suite doesn't hide the rest.
+      - name: Run API suites (no LLM required)
+        working-directory: backend
+        run: |
+          set +e
+          failed=()
+          for t in check_approvals check_api check_followups check_register \
+                   check_leave check_mcp; do
+            if [ ! -f "tests/$t.py" ]; then
+              echo "::notice::tests/$t.py is not in the repo yet — skipped"
+              continue
+            fi
+            echo "::group::tests/$t.py"
+            python "tests/$t.py"
+            rc=$?
+            echo "::endgroup::"
+            if [ $rc -ne 0 ]; then failed+=("$t"); fi
+          done
+          if [ ${#failed[@]} -ne 0 ]; then
+            echo "::error::Failed suites: ${failed[*]}"
+            exit 1
+          fi
+          echo "All present suites passed."
+
+      # Only when the GEMINI_API_KEY secret exists: build the Chroma chat
+      # index (gitignored, so CI must rebuild it) and run the chat suites
+      # against the still-running server. check_chat hard-fails without an
+      # index/LLM, which is why it lives here and not in the step above.
+      - name: Build chat index + LLM suites (needs GEMINI_API_KEY secret)
+        if: env.GEMINI_API_KEY != ''
+        working-directory: backend
+        run: |
+          python build_index.py
+          set +e
+          failed=()
+          for t in check_chat check_agent check_skills; do
+            if [ ! -f "tests/$t.py" ]; then
+              echo "::notice::tests/$t.py is not in the repo yet — skipped"
+              continue
+            fi
+            echo "::group::tests/$t.py"
+            python "tests/$t.py"
+            rc=$?
+            echo "::endgroup::"
+            if [ $rc -ne 0 ]; then failed+=("$t"); fi
+          done
+          if [ ${#failed[@]} -ne 0 ]; then
+            echo "::error::Failed LLM suites: ${failed[*]}"
+            exit 1
+          fi
+
+      - name: Upload API log on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: netracare-api-log
+          path: /tmp/netracare-api.log
+          if-no-files-found: ignore

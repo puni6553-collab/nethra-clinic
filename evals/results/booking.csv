@@ -1,0 +1,22 @@
+﻿id,input,output,error,latency_ms,result_ok,appointment_ok,expected,reason_code,expected_appointment,turns,pending_action,got,rule_breaks,appointment_detail
+AS01,"Please book my retina follow-up with Dr. Shah this Friday morning, the earliest time you have. Reason: six-month diabetic eye review || [confirm]","I have booked your retina follow-up with Dr. Kiran Shah for this Friday, 6 November 2026, at 09:00 for your six-month diabetic eye review.",,8646.2,True,True,booked,,D3 Retina follow_up 2026-11-06 09:00,2,,booked,0,
+AS03,"Book a glaucoma check with Dr. Iyer this Thursday. Reason: my optician said my eye pressure is high || Friday is fine, the earliest time please || [confirm]","Hello! It looks like you'd like to book an appointment for this coming Friday, November 6th, at the earliest available time. 
+
+Could you please tell me what brings you in today so I can find the right speciality and available slots for you?",,8098.5,False,False,booked,,D2 Glaucoma new 2026-11-06 09:00,2,,no_change,0,no new booking matching D2 Glaucoma new 2026-11-06 09:00
+AS04,Book me a cataract appointment with Dr. Iyer on Wednesday morning. Reason: my vision is getting cloudy,,,15645.6,True,,no_change,ACTIVE_BOOKING_EXISTS,,1,"Book Dr. Meera Iyer, Cataract consultation, Wed 4 Nov, 9:00 AM (20 min)?",no_change,0,
+AS05,"Can you move my appointment tomorrow to Thursday afternoon, the earliest time with the same doctor? || [confirm]","I have moved your appointment with Dr. Anand Rao from tomorrow (Tuesday, 3 November) to Thursday, 5 November 2026 at 14:00.",,6903.0,True,True,rescheduled,,A102 cancelled; D1 General new 2026-11-05 14:00,2,,rescheduled,0,
+AS06,Please cancel my appointment today || [confirm],"Your appointment today with Dr. Kiran Shah at 11:00 is starting in less than 2 hours, so your cancellation request has been sent to Staff for approval. The appointment will remain booked until they approve it.",,5329.4,True,True,to_staff,INSIDE_2_HOURS,A103 still booked; one Staff approval request,2,,to_staff,0,
+AS09,Cancel appointment A105 || [confirm],"You don't have an appointment with the ID A105. Your only upcoming appointment is appointment #13 with Dr. Fatima Khan for Dry eye on Thursday, 5 November 2026, from 14:00 to 14:20. 
+
+Would you like to cancel that appointment?",,4642.9,True,True,no_change,NOT_YOUR_APPOINTMENT,A105 still booked,1,,no_change,0,
+AS13,Can I book for tomorrow? A curtain came down over my right eye an hour ago,What you describe needs urgent attention. Please come to the clinic now or go to the nearest emergency department. Our staff have been notified.,,4392.0,True,True,emergency,,No booking; one urgent case from the chat,1,,emergency,0,
+AS20,Please move my glaucoma appointment to Thursday 5 November with Dr. Iyer || [confirm],"Dr. Meera Iyer does not see patients on Thursdays (she is available on Mondays, Wednesdays, Fridays, and Saturdays). Furthermore, there are no free slots available on Thursday, 5 November.
+
+The next available openings with Dr. Meera Iyer are on Friday, 6 November 2026. Here are some early morning times:
+- 09:00
+- 09:10
+- 09:20
+- 09:30
+- 09:40
+
+Would you like to move your appointment to one of these times, or would you prefer a different day?",,7238.8,True,True,no_change,DOCTOR_OFF,A105 still booked (Wednesday 4 November 10:00),1,,no_change,0,

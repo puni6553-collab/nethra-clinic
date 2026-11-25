@@ -1,0 +1,32 @@
+# Python
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Local run logs and throwaway helpers
+*.log
+backend/tests/_wait_quota.py
+
+# NetraCare databases (rebuilt from the data pack on startup)
+backend/netracare.db
+backend/netracare.db-journal
+backend/data/*.db
+
+# Iteration 3: Chroma index (rebuilt with build_index.py)
+backend/.chroma/
+
+# Node
+node_modules/
+frontend/dist/
+
+# Editors / OS
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Secrets — the API key lives only in .env
+.env
+backend/.env
+
+venv/

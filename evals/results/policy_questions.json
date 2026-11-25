@@ -1,0 +1,364 @@
+{
+  "suite": "policy_questions",
+  "size": "small",
+  "started": "2026-11-16T14:18:54",
+  "finished": "2026-11-16T14:18:54",
+  "git_commit": "c240538",
+  "model": "gemini-3.5-flash-lite",
+  "measures": [
+    {
+      "name": "Policy answers cite a document",
+      "kind": "target",
+      "value": "8/8",
+      "threshold": "100%",
+      "met": true,
+      "note": ""
+    },
+    {
+      "name": "Policy answers citing the expected section",
+      "kind": "bar",
+      "value": "8/8 (100%)",
+      "threshold": ">= 90%",
+      "met": true,
+      "note": ""
+    },
+    {
+      "name": "\"I don't know\" rows answered with the fixed message",
+      "kind": "bar",
+      "value": "2/2",
+      "threshold": "2 of 2",
+      "met": true,
+      "note": ""
+    },
+    {
+      "name": "RAGAS faithfulness (working bar)",
+      "kind": "bar",
+      "value": "0.844",
+      "threshold": ">= 0.85",
+      "met": false,
+      "note": ""
+    },
+    {
+      "name": "RAGAS context recall (working bar)",
+      "kind": "bar",
+      "value": "1.000",
+      "threshold": ">= 0.80",
+      "met": true,
+      "note": ""
+    },
+    {
+      "name": "RAGAS response relevancy",
+      "kind": "report",
+      "value": "0.812",
+      "threshold": "report only",
+      "met": null,
+      "note": ""
+    },
+    {
+      "name": "RAGAS context precision",
+      "kind": "report",
+      "value": "0.762",
+      "threshold": "report only",
+      "met": null,
+      "note": ""
+    }
+  ],
+  "notes": [],
+  "extra": {
+    "ragas": {
+      "averages": {
+        "faithfulness": 0.8438,
+        "context_precision": 0.7619,
+        "context_recall": 1.0,
+        "answer_relevancy": 0.8117
+      },
+      "lowest": [
+        {
+          "id": "Q10",
+          "question": "When can I swim after LASIK?",
+          "mean": 0.6667,
+          "scores": {
+            "ragas_faithfulness": 0.5,
+            "ragas_context_precision": 0.5,
+            "ragas_context_recall": 1.0
+          }
+        },
+        {
+          "id": "Q08",
+          "question": "How much does cataract surgery cost?",
+          "mean": 0.7778,
+          "scores": {
+            "ragas_faithfulness": 1.0,
+            "ragas_context_precision": 0.3333,
+            "ragas_context_recall": 1.0
+          }
+        },
+        {
+          "id": "Q14",
+          "question": "What days does Dr. Menon see patients?",
+          "mean": 0.8203,
+          "scores": {
+            "ragas_faithfulness": 1.0,
+            "ragas_answer_relevancy": 0.781,
+            "ragas_context_precision": 0.5,
+            "ragas_context_recall": 1.0
+          }
+        }
+      ],
+      "rows_scored": 8,
+      "rows_total": 8
+    },
+    "ragas_block": {
+      "enabled": true,
+      "averages": {
+        "faithfulness": 0.8438,
+        "context_precision": 0.7619,
+        "context_recall": 1.0,
+        "answer_relevancy": 0.8117
+      },
+      "per_row": [
+        {
+          "faithfulness": 1.0,
+          "context_precision": 0.9999999999,
+          "context_recall": 1.0
+        },
+        {
+          "faithfulness": 0.8333333333333334,
+          "answer_relevancy": 0.7978482841247724,
+          "context_precision": 0.99999999995,
+          "context_recall": 1.0
+        },
+        {
+          "faithfulness": 1.0,
+          "context_recall": 1.0
+        },
+        {
+          "faithfulness": 1.0,
+          "context_precision": 0.3333333333,
+          "context_recall": 1.0
+        },
+        {
+          "faithfulness": 0.5,
+          "context_precision": 0.49999999995,
+          "context_recall": 1.0
+        },
+        {
+          "faithfulness": 0.6666666666666666,
+          "answer_relevancy": 0.8561355910907468,
+          "context_precision": 0.9999999999,
+          "context_recall": 1.0
+        },
+        {
+          "faithfulness": 1.0,
+          "answer_relevancy": 0.7809721623722402,
+          "context_precision": 0.49999999995,
+          "context_recall": 1.0
+        },
+        {
+          "faithfulness": 0.75,
+          "context_precision": 0.9999999999,
+          "context_recall": 1.0
+        }
+      ],
+      "rows_scored": 8,
+      "rows_total": 8
+    },
+    "opik": "disabled (no OPIK_API_KEY in the environment)"
+  },
+  "rows": [
+    {
+      "id": "Q01",
+      "input": "What time does the clinic open on Saturday?",
+      "output": "The clinic opens at 9 AM on Saturday.",
+      "scores": {
+        "has_source": true,
+        "section_ok": true,
+        "ragas_faithfulness": 1.0,
+        "ragas_context_precision": 1.0,
+        "ragas_context_recall": 1.0
+      },
+      "error": "",
+      "latency_ms": 10407.566299999417,
+      "extra": {
+        "expected_answer": "9 AM to 6 PM with lunch closed 1 to 2 PM",
+        "expected_source": "clinic_policy_faq.md > Timings",
+        "kind": "answered",
+        "sources": "clinic_policy_faq.md > Timings"
+      }
+    },
+    {
+      "id": "Q03",
+      "input": "How long will my eyes be blurry after the drops? Can I drive back?",
+      "output": "According to the clinic's sheet, vision is blurred for about 4 to 6 hours after the drops. The sheet states that you should not drive or ride a two-wheeler home after dilation, and advises you to bring someone with you, use a taxi, and bring sunglasses for the journey home. Please confirm the exact timings with your care team.",
+      "scores": {
+        "has_source": true,
+        "section_ok": true,
+        "ragas_faithfulness": 0.8333,
+        "ragas_answer_relevancy": 0.7978,
+        "ragas_context_precision": 1.0,
+        "ragas_context_recall": 1.0
+      },
+      "error": "",
+      "latency_ms": 3337.9286000008506,
+      "extra": {
+        "expected_answer": "About 4 to 6 hours. Do not drive or ride a two-wheeler home",
+        "expected_source": "clinic_policy_faq.md > Dilation",
+        "kind": "answered",
+        "sources": "clinic_policy_faq.md > Dilation"
+      }
+    },
+    {
+      "id": "Q06",
+      "input": "Can I cancel my appointment one hour before?",
+      "output": "Within 2 hours of the appointment, your request goes to Staff for approval. Your appointment stays as it is until Staff approve it.",
+      "scores": {
+        "has_source": true,
+        "section_ok": true,
+        "ragas_faithfulness": 1.0,
+        "ragas_context_recall": 1.0
+      },
+      "error": "",
+      "latency_ms": 3274.606699999822,
+      "extra": {
+        "expected_answer": "No. Online cancelling closes 2 hours before; inside 2 hours the request goes to Staff for approval and the appointment stays until they approve",
+        "expected_source": "clinic_policy_faq.md > Cancelling or changing an appointment",
+        "kind": "answered",
+        "sources": "clinic_policy_faq.md > Cancelling or changing an appointment"
+      }
+    },
+    {
+      "id": "Q08",
+      "input": "How much does cataract surgery cost?",
+      "output": "The indicative cost for cataract surgery is ₹35,000 to ₹90,000 per eye, depending on the lens chosen.",
+      "scores": {
+        "has_source": true,
+        "section_ok": true,
+        "ragas_faithfulness": 1.0,
+        "ragas_context_precision": 0.3333,
+        "ragas_context_recall": 1.0
+      },
+      "error": "",
+      "latency_ms": 3489.9460000006,
+      "extra": {
+        "expected_answer": "₹35,000 to ₹90,000 per eye, depending on the lens; indicative",
+        "expected_source": "procedures.md > Cataract surgery",
+        "kind": "answered",
+        "sources": "procedures.md > Cataract surgery"
+      }
+    },
+    {
+      "id": "Q10",
+      "input": "When can I swim after LASIK?",
+      "output": "According to the clinic's own sheet, please do not swim for 2 weeks after LASIK. Please confirm the exact timings with your care team.",
+      "scores": {
+        "has_source": true,
+        "section_ok": true,
+        "ragas_faithfulness": 0.5,
+        "ragas_context_precision": 0.5,
+        "ragas_context_recall": 1.0
+      },
+      "error": "",
+      "latency_ms": 3062.9925000002913,
+      "extra": {
+        "expected_answer": "After 2 weeks",
+        "expected_source": "procedures.md > LASIK (laser vision correction)",
+        "kind": "answered",
+        "sources": "procedures.md > LASIK (laser vision correction)"
+      }
+    },
+    {
+      "id": "Q12",
+      "input": "Can my son eat before his squint surgery?",
+      "output": "According to the clinic's own sheet, before squint surgery there should be no food for 6 hours and no water for 2 hours. Please confirm the exact timings with your care team.",
+      "scores": {
+        "has_source": true,
+        "section_ok": true,
+        "ragas_faithfulness": 0.6667,
+        "ragas_answer_relevancy": 0.8561,
+        "ragas_context_precision": 1.0,
+        "ragas_context_recall": 1.0
+      },
+      "error": "",
+      "latency_ms": 3686.530199999652,
+      "extra": {
+        "expected_answer": "No food for 6 hours and no water for 2 hours before",
+        "expected_source": "procedures.md > Squint surgery",
+        "kind": "answered",
+        "sources": "procedures.md > Squint surgery"
+      }
+    },
+    {
+      "id": "Q14",
+      "input": "What days does Dr. Menon see patients?",
+      "output": "Dr. Vikram Menon sees patients on Monday, Tuesday, Thursday and Saturday, morning and afternoon.",
+      "scores": {
+        "has_source": true,
+        "section_ok": true,
+        "ragas_faithfulness": 1.0,
+        "ragas_answer_relevancy": 0.781,
+        "ragas_context_precision": 0.5,
+        "ragas_context_recall": 1.0
+      },
+      "error": "",
+      "latency_ms": 3480.092400000103,
+      "extra": {
+        "expected_answer": "Monday, Tuesday, Thursday and Saturday",
+        "expected_source": "doctors.md > Dr. Vikram Menon",
+        "kind": "answered",
+        "sources": "doctors.md > Dr. Vikram Menon"
+      }
+    },
+    {
+      "id": "Q24",
+      "input": "How much does a retina injection cost?",
+      "output": "The indicative cost for a retina injection is ₹8,000 to ₹30,000 per injection, depending on the medicine. Costs are indicative only, shared as information.",
+      "scores": {
+        "has_source": true,
+        "section_ok": true,
+        "ragas_faithfulness": 0.75,
+        "ragas_context_precision": 1.0,
+        "ragas_context_recall": 1.0
+      },
+      "error": "",
+      "latency_ms": 3279.992700000548,
+      "extra": {
+        "expected_answer": "₹8,000 to ₹30,000 per injection, depending on the medicine; indicative",
+        "expected_source": "procedures.md > Retina injection",
+        "kind": "answered",
+        "sources": "procedures.md > Retina injection; procedures.md > NetraCare procedures: what to expect"
+      }
+    },
+    {
+      "id": "Q16",
+      "input": "Is there parking at the clinic?",
+      "output": "I don't know. Our clinic documents don't cover that. Please ask Staff at the front desk.",
+      "scores": {
+        "idk_ok": true
+      },
+      "error": "",
+      "latency_ms": 2659.041900000375,
+      "extra": {
+        "expected_answer": "I don't know",
+        "expected_source": "none",
+        "kind": "idk",
+        "sources": ""
+      }
+    },
+    {
+      "id": "Q18",
+      "input": "What is the success rate of LASIK at NetraCare?",
+      "output": "I don't know. Our clinic documents don't cover that. Please ask Staff at the front desk.",
+      "scores": {
+        "idk_ok": true
+      },
+      "error": "",
+      "latency_ms": 3484.036100000594,
+      "extra": {
+        "expected_answer": "I don't know",
+        "expected_source": "none",
+        "kind": "idk",
+        "sources": ""
+      }
+    }
+  ]
+}

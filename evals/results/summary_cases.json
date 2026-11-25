@@ -1,0 +1,89 @@
+{
+  "suite": "summary_cases",
+  "size": "small",
+  "started": "2026-11-11T16:20:34",
+  "finished": "2026-11-11T16:20:34",
+  "git_commit": "c240538",
+  "model": "gemini-3.5-flash-lite",
+  "measures": [
+    {
+      "name": "Doctor summaries that add something not recorded",
+      "kind": "bar",
+      "value": "0 of 3",
+      "threshold": "0",
+      "met": true,
+      "note": ""
+    },
+    {
+      "name": "Summaries missing a must_include fact",
+      "kind": "report",
+      "value": "0 of 3",
+      "threshold": "report only",
+      "met": null,
+      "note": ""
+    }
+  ],
+  "notes": [],
+  "extra": {
+    "opik": "disabled (no OPIK_API_KEY in the environment)"
+  },
+  "rows": [
+    {
+      "id": "SU01",
+      "input": "P01: Six-month diabetic eye review",
+      "output": "Asha Verma, 68, presents for a six-month diabetic eye review with Type 2 diabetes and high blood pressure. \n\nDr. Kiran Shah (Retina) recorded Type 2 diabetes for 12 years, mild non-proliferative diabetic retinopathy both eyes (unchanged), and no macular oedema on OCT. Visual acuity: 6/9 OD, 6/12 OS. Dr. Shah advised strict sugar and BP control and recommended continuing 6-monthly reviews. \n\nDr. Anand Rao (Cataract) recorded nuclear sclerosis grade 2 OS, grade 1 OD, with glare symptoms at night. Discussed cataract surgery OS when vision affects daily tasks; the patient wants to wait.",
+      "scores": {
+        "no_additions": true,
+        "facts_present": true
+      },
+      "error": "",
+      "latency_ms": 8276.651500000298,
+      "extra": {
+        "patient_id": "P01",
+        "must_include": "Type 2 diabetes and high blood pressure | no known allergies | Dr. Shah: mild NPDR both eyes, unchanged, no macular oedema | Dr. Rao: early cataract with night glare, patient chose to wait",
+        "must_not_add": "Saying the retina is getting worse, or that surgery is due now",
+        "added": "",
+        "missing": "",
+        "judge_note": "The summary accurately reflects the record and includes all must-have facts without adding unsupported claims."
+      }
+    },
+    {
+      "id": "SU04",
+      "input": "P18: Pre-surgery check for cataract surgery",
+      "output": "Harish Chandra, 81, history of heart disease and aspirin use. \n\nDr. Anand Rao (Cataract, 2026-09-07): Mature cataract OS, VA hand movements OS, 6/12 OD. Poor fundus view; B-scan shows attached retina. Listed for cataract surgery OS. \n\nDr. Kiran Shah (Retina, 2025-12-08): Old branch retinal vein occlusion OD, inactive. No macular oedema. No treatment needed. Review yearly.",
+      "scores": {
+        "no_additions": true,
+        "facts_present": true
+      },
+      "error": "",
+      "latency_ms": 5328.207700000348,
+      "extra": {
+        "patient_id": "P18",
+        "must_include": "Heart disease and takes aspirin | Dr. Rao: mature cataract left eye, listed for surgery | Dr. Shah: old branch vein occlusion right eye, inactive, no treatment",
+        "must_not_add": "Advising to stop aspirin, or giving a surgery date",
+        "added": "",
+        "missing": "",
+        "judge_note": "The summary accurately reflects the record and includes all required facts without making unsupported additions."
+      }
+    },
+    {
+      "id": "SU05",
+      "input": "P15: Eye pressure review",
+      "output": "Patient: Sunita Rao (Age: 51, Asthma, No known allergies).\nAppointment reason: Eye pressure review.\n\nVisit on 2026-05-06 with Dr. Meera Iyer (Glaucoma):\n- Diagnosis: Ocular hypertension. \n- Findings: IOP 25 OD, 24 OS. Fields and OCT normal. \n- Treatment: Started latanoprost at night both eyes. Timolol avoided because of asthma.",
+      "scores": {
+        "no_additions": true,
+        "facts_present": true
+      },
+      "error": "",
+      "latency_ms": 5510.848600000827,
+      "extra": {
+        "patient_id": "P15",
+        "must_include": "Asthma | Dr. Iyer: ocular hypertension, latanoprost started, timolol avoided because of asthma",
+        "must_not_add": "Calling it glaucoma (the note says ocular hypertension), or suggesting timolol",
+        "added": "",
+        "missing": "",
+        "judge_note": "The summary accurately reflects the record and includes all required facts."
+      }
+    }
+  ]
+}

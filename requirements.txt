@@ -1,0 +1,65 @@
+# NetraCare backend — install with:
+#   python -m pip install -r requirements.txt
+# (run from the project root)
+#
+# Verified on Python 3.13.15 (Windows). Versions are pinned exactly so the
+# project behaves the same on the grader's machine as it does on yours.
+# The rest of the tree (pydantic, sqlalchemy, starlette, ...) is pulled in
+# automatically by these three.
+
+# Web framework + the interactive API docs at /docs
+fastapi==0.162.0
+
+# ASGI server that runs the app. The [standard] extra adds the bits uvicorn
+# wants in production: watchfiles (for --reload), httptools, websockets.
+uvicorn[standard]==0.54.0
+
+# SQLModel = SQLAlchemy + Pydantic in one. Gives us the ORM models and makes
+# the request/response schemas line up with the database tables.
+sqlmodel==0.0.48
+
+# Iteration 2: LangChain basics (prompt | model | parser) for the three LLM
+# features — Fact of the Day, red-flag check, doctor summary.
+langchain>=0.3.0
+langchain-core>=0.3.0
+langchain-google-genai>=2.0.0
+
+# Iteration 3: RAG over the clinic documents — chunking, Chroma vector
+# store, BM25 keyword search and the hybrid (EnsembleRetriever) used by chat.
+chromadb>=1.0.0
+langchain-chroma>=1.0.0
+langchain-community>=0.4.0
+langchain-classic>=1.0.0
+langchain-text-splitters>=1.1.0
+rank_bm25>=0.2.0
+
+# Iteration 4: the booking agent — StateGraph, ToolNode, InMemorySaver,
+# interrupt()/Command. Installed and verified at 1.2.20.
+langgraph>=1.0.0
+
+# Reads .env (API key, provider) without ever committing the key.
+python-dotenv>=1.0.0
+
+# Iteration 5: evals and observability — Opik tracing/experiments, RAGAS
+# metrics for the clinic answers, and the LLM judge.
+opik>=2.0.0
+ragas==0.4.3
+
+# IMPORTANT — Smart App Control (SAC) on this machine blocks unsigned
+# binaries it has never seen, which kills the NEWEST builds of these three
+# at import time ("An Application Control policy has blocked this file").
+# These are the verified-working versions; do not blindly upgrade them:
+#   pandas 3.1.1  -> blocked; 2.2.3 works
+#   pyarrow 26.x  -> blocked; 18.1.0 works
+#   datasets 5.x  -> needs pyarrow>=24, so it is pinned to 3.6.0 here.
+# ragas declares datasets>=4 but works with 3.6.0 — verified.
+pandas==2.2.3
+pyarrow==18.1.0
+datasets==3.6.0
+
+# Iteration 6: MCP both ways — the official SDK (stay on 1.x, 2.x renamed
+# FastMCP and langchain-mcp-adapters needs 1.x), the adapter that turns a
+# partner's tools into LangChain tools, and YAML front matter for skills.
+mcp[cli]<2
+langchain-mcp-adapters>=0.3.0
+python-frontmatter>=1.1.0

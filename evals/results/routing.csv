@@ -1,0 +1,43 @@
+﻿id,input,output,error,latency_ms,routed,expected,also_accept,got
+R01,My optician said the pressure in my eyes is high,"A consultation in our Glaucoma speciality would be suitable. I cannot say what is causing it, but a doctor in that speciality can assess it at the visit. 
+
+Since this will be a first visit with us, it will be a new consultation. What is the main reason for your visit?",,16747.5,True,Glaucoma,,Glaucoma
+R02,I have had diabetes for 10 years and never had my eyes checked,"A consultation in our Retina speciality would be suitable. I cannot say what is causing it, but a doctor in that speciality can assess it at the visit.
+
+Would you like me to find some available appointment times for a first visit in our Retina speciality?",,13132.0,True,Retina,,Retina
+R03,My vision has been getting misty over the last year and headlights dazzle me at night,"That falls under our Cataract speciality
+. I cannot say what is causing it, but a doctor in that speciality can assess it at the visit. 
+
+Would you like me to check available appointment times for a new consultation in Cataract?",,14144.2,True,Cataract,,Cataract
+R04,My 5 year old's left eye turns inwards,"A consultation in our Paediatric speciality with Dr. Vikram Menon would be suitable. I cannot say what is causing it, but a doctor in that speciality can assess it at the visit.
+
+Since your child is under 16, all appointments are booked under our Paediatric speciality. 
+
+Here are some available appointment times with Dr. Vikram Menon:
+- Today, 2 November 2026 at 10:10, 10:20, 10:30, 10:40, or 10:50
+
+Would you like to book one of these times, or would you prefer a different date?",,25332.7,True,Paediatric,Squint,Paediatric
+R05,I want to get rid of my glasses for good,"That falls under our Refractive speciality. 
+
+Here are some available appointment times with Dr. Fatima Khan:
+- Tomorrow, Tuesday 3 November 2026 at 09:00, 09:10, 09:20, 09:30, or 09:40
+
+Would you like to book one of these times, and what is the reason for your visit?",,30927.2,True,Refractive,,Refractive
+R06,My eyes feel sandy and tired after a whole day on the laptop,"A consultation in our Dry eye speciality would be suitable. I cannot say what is causing it, but a doctor in that speciality can assess it at the visit. 
+
+Would you like me to check available appointment times for a first visit?",,14572.6,True,Dry eye,,Dry eye
+R08,Straight lines on the door frame look wavy to me and it's been slowly getting worse,"A consultation in our Retina speciality would be suitable. I cannot say what is causing it, but a doctor in that speciality can assess it at the visit.
+
+Would you like me to check available appointment times for you?",,7352.1,True,Retina,,Retina
+R11,There is a small white spot on the front of my eye for a few months,"A consultation in our Cornea speciality would be suitable. I cannot say what is causing it, but a doctor in that speciality can assess it at the visit.
+
+Would you like me to check available appointment
+ times for a new consultation in Cornea?",,15982.0,True,Cornea,,Cornea
+R23,"Doctor ne bola eye pressure high hai, check karwana hai","That falls under our Glaucoma speciality, and I cannot say what is causing it, but a doctor in that speciality can assess it at the visit. 
+
+Here are some available appointment times with Dr. Meera Iyer:
+- Today, 2 November 2026 at 10:10, 10:20, 10:30, 10:40, or 10:50
+
+Would any of these times work for you, or would you prefer a different day? Also, please let me know the reason for your visit so we can get it booked.",,29430.7,True,Glaucoma,,Glaucoma
+R30,My back hurts when I sit for too long,"NetraCare is an eye clinic
+, so we only look after eyes. We cannot help with back pain, and I won't be able to book an appointment for that.",,17610.3,True,none,,None

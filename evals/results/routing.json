@@ -1,0 +1,174 @@
+{
+  "suite": "routing",
+  "size": "small",
+  "started": "2026-11-16T15:11:08",
+  "finished": "2026-11-16T15:11:08",
+  "git_commit": "c240538",
+  "model": "gemini-3.5-flash-lite",
+  "measures": [
+    {
+      "name": "Routed to the right speciality",
+      "kind": "target",
+      "value": "10/10 (100%)",
+      "threshold": ">= 90%",
+      "met": true,
+      "note": ""
+    }
+  ],
+  "notes": [],
+  "extra": {
+    "opik": "disabled (no OPIK_API_KEY in the environment)"
+  },
+  "rows": [
+    {
+      "id": "R01",
+      "input": "My optician said the pressure in my eyes is high",
+      "output": "A consultation in our Glaucoma speciality would be suitable. I cannot say what is causing it, but a doctor in that speciality can assess it at the visit. \n\nSince this will be a first visit with us, it will be a new consultation. What is the main reason for your visit?",
+      "scores": {
+        "routed": true
+      },
+      "error": "",
+      "latency_ms": 16747.54490000032,
+      "extra": {
+        "expected": "Glaucoma",
+        "also_accept": "",
+        "got": "Glaucoma"
+      }
+    },
+    {
+      "id": "R02",
+      "input": "I have had diabetes for 10 years and never had my eyes checked",
+      "output": "A consultation in our Retina speciality would be suitable. I cannot say what is causing it, but a doctor in that speciality can assess it at the visit.\n\nWould you like me to find some available appointment times for a first visit in our Retina speciality?",
+      "scores": {
+        "routed": true
+      },
+      "error": "",
+      "latency_ms": 13131.975299999795,
+      "extra": {
+        "expected": "Retina",
+        "also_accept": "",
+        "got": "Retina"
+      }
+    },
+    {
+      "id": "R03",
+      "input": "My vision has been getting misty over the last year and headlights dazzle me at night",
+      "output": "That falls under our Cataract speciality\n. I cannot say what is causing it, but a doctor in that speciality can assess it at the visit. \n\nWould you like me to check available appointment times for a new consultation in Cataract?",
+      "scores": {
+        "routed": true
+      },
+      "error": "",
+      "latency_ms": 14144.182100000762,
+      "extra": {
+        "expected": "Cataract",
+        "also_accept": "",
+        "got": "Cataract"
+      }
+    },
+    {
+      "id": "R04",
+      "input": "My 5 year old's left eye turns inwards",
+      "output": "A consultation in our Paediatric speciality with Dr. Vikram Menon would be suitable. I cannot say what is causing it, but a doctor in that speciality can assess it at the visit.\n\nSince your child is under 16, all appointments are booked under our Paediatric speciality. \n\nHere are some available appointment times with Dr. Vikram Menon:\n- Today, 2 November 2026 at 10:10, 10:20, 10:30, 10:40, or 10:50\n\nWould you like to book one of these times, or would you prefer a different date?",
+      "scores": {
+        "routed": true
+      },
+      "error": "",
+      "latency_ms": 25332.726999999977,
+      "extra": {
+        "expected": "Paediatric",
+        "also_accept": "Squint",
+        "got": "Paediatric"
+      }
+    },
+    {
+      "id": "R05",
+      "input": "I want to get rid of my glasses for good",
+      "output": "That falls under our Refractive speciality. \n\nHere are some available appointment times with Dr. Fatima Khan:\n- Tomorrow, Tuesday 3 November 2026 at 09:00, 09:10, 09:20, 09:30, or 09:40\n\nWould you like to book one of these times, and what is the reason for your visit?",
+      "scores": {
+        "routed": true
+      },
+      "error": "",
+      "latency_ms": 30927.162699999826,
+      "extra": {
+        "expected": "Refractive",
+        "also_accept": "",
+        "got": "Refractive"
+      }
+    },
+    {
+      "id": "R06",
+      "input": "My eyes feel sandy and tired after a whole day on the laptop",
+      "output": "A consultation in our Dry eye speciality would be suitable. I cannot say what is causing it, but a doctor in that speciality can assess it at the visit. \n\nWould you like me to check available appointment times for a first visit?",
+      "scores": {
+        "routed": true
+      },
+      "error": "",
+      "latency_ms": 14572.603999999956,
+      "extra": {
+        "expected": "Dry eye",
+        "also_accept": "",
+        "got": "Dry eye"
+      }
+    },
+    {
+      "id": "R08",
+      "input": "Straight lines on the door frame look wavy to me and it's been slowly getting worse",
+      "output": "A consultation in our Retina speciality would be suitable. I cannot say what is causing it, but a doctor in that speciality can assess it at the visit.\n\nWould you like me to check available appointment times for you?",
+      "scores": {
+        "routed": true
+      },
+      "error": "",
+      "latency_ms": 7352.05920000044,
+      "extra": {
+        "expected": "Retina",
+        "also_accept": "",
+        "got": "Retina"
+      }
+    },
+    {
+      "id": "R11",
+      "input": "There is a small white spot on the front of my eye for a few months",
+      "output": "A consultation in our Cornea speciality would be suitable. I cannot say what is causing it, but a doctor in that speciality can assess it at the visit.\n\nWould you like me to check available appointment\n times for a new consultation in Cornea?",
+      "scores": {
+        "routed": true
+      },
+      "error": "",
+      "latency_ms": 15981.990000000224,
+      "extra": {
+        "expected": "Cornea",
+        "also_accept": "",
+        "got": "Cornea"
+      }
+    },
+    {
+      "id": "R23",
+      "input": "Doctor ne bola eye pressure high hai, check karwana hai",
+      "output": "That falls under our Glaucoma speciality, and I cannot say what is causing it, but a doctor in that speciality can assess it at the visit. \n\nHere are some available appointment times with Dr. Meera Iyer:\n- Today, 2 November 2026 at 10:10, 10:20, 10:30, 10:40, or 10:50\n\nWould any of these times work for you, or would you prefer a different day? Also, please let me know the reason for your visit so we can get it booked.",
+      "scores": {
+        "routed": true
+      },
+      "error": "",
+      "latency_ms": 29430.67400000018,
+      "extra": {
+        "expected": "Glaucoma",
+        "also_accept": "",
+        "got": "Glaucoma"
+      }
+    },
+    {
+      "id": "R30",
+      "input": "My back hurts when I sit for too long",
+      "output": "NetraCare is an eye clinic\n, so we only look after eyes. We cannot help with back pain, and I won't be able to book an appointment for that.",
+      "scores": {
+        "routed": true
+      },
+      "error": "",
+      "latency_ms": 17610.255000000507,
+      "extra": {
+        "expected": "none",
+        "also_accept": "",
+        "got": "None"
+      }
+    }
+  ]
+}

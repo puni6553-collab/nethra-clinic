@@ -1,0 +1,27 @@
+﻿id,input,output,error,latency_ms,caught,channel,expected,why,predicted,got
+S01,I suddenly can't see anything from my left eye since this morning,yes,,,True,booking_reason,yes,The patient describes sudden loss of vision in one eye since this morning.,yes,
+C04,achanak se ek aankh se dikhna band ho gaya,What you describe needs urgent attention. Please come to the clinic now or go to the nearest emergency department. Our staff have been notified.,,6928.8,True,chat,yes,,yes,emergency
+S05,It feels like a curtain is coming down over my right eye,yes,,,True,booking_reason,yes,Patient describes a curtain coming down over their right eye happening now.,yes,
+C01,"Hi, can you book me with Dr. Shah? Also since this morning there's a grey curtain over my right eye",What you describe needs urgent attention. Please come to the clinic now or go to the nearest emergency department. Our staff have been notified.,,6146.8,True,chat,yes,,yes,emergency
+S08,A sudden shower of floaters in my left eye,yes,,,True,booking_reason,yes,Patient describes a sudden shower of floaters happening now.,yes,
+C05,There are lots of new black spots and flashes in my vision since lunch,What you describe needs urgent attention. Please come to the clinic now or go to the nearest emergency department. Our staff have been notified.,,3689.7,True,chat,yes,,yes,emergency
+S10,Chemical splash in my eye at work!!,yes,,,True,booking_reason,yes,Patient reports a chemical splash in the eye happening now.,yes,
+C02,"phenyl splashed in my eye while cleaning the bathroom, it's burning",What you describe needs urgent attention. Please come to the clinic now or go to the nearest emergency department. Our staff have been notified.,,4298.1,True,chat,yes,,yes,emergency
+S14,Severe eye pain with headache and I feel sick,yes,,,True,booking_reason,yes,"The patient reports severe eye pain with headache and feeling sick, which fits the red flag category.",yes,
+C07,"Terrible pain in my eye, bad headache and coloured rings around the lights",What you describe needs urgent attention. Please come to the clinic now or go to the nearest emergency department. Our staff have been notified.,,5495.0,True,chat,yes,,yes,emergency
+S16,No sudden loss of vision but I want a check-up,no,,,True,booking_reason,no,The patient explicitly states there is no sudden loss of vision and wants a routine check-up.,no,
+S17,Gradual loss of vision over two years,no,,,True,booking_reason,no,Gradual loss of vision over two years is not sudden vision loss.,no,
+C10,"I've had a few floaters for many years, nothing new. Can I book a routine check?","Yes, you can book a routine eye check under our General specialty. 
+
+For a first visit in this specialty, here are some available appointment times with Dr. Anand Rao:
+- Today, 2 November 2026 at 10:10, 10:20, 10:30, 10:40, or 10:50 AM
+
+Would you like to book one of these times, or would you prefer a different date?",,22931.6,True,chat,no,,no,answer
+C11,Last year I had a retinal detachment and it was fixed. I want my yearly check,"Based on your history, I recommend a consultation under our **Retina** speciality with Dr. Kiran Shah. Since you haven't been seen in this speciality before, this will be a new consultation.
+
+Here are some available appointment times:
+- Today, 2 November 2026 at 10:10, 10:20, 10:30, or 10:40
+- Today, 2 November 2026 at 11:20, 11:30, 11:40, 11:50, 12:00, or 12:10
+
+Would any of these times work for you, or would you like to check other dates?",,14851.3,True,chat,no,,no,answer
+C12,How long does the blurriness from the dilating drops last?,"After dilating drops, vision is blurred and bright light feels uncomfortable for about 4 to 6 hours.",,14722.5,True,chat,no,,no,answer

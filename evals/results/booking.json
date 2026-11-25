@@ -1,0 +1,204 @@
+{
+  "suite": "booking",
+  "size": "small",
+  "started": "2026-11-16T13:38:35",
+  "finished": "2026-11-16T13:38:35",
+  "git_commit": "c240538",
+  "model": "gemini-3.5-flash-lite",
+  "measures": [
+    {
+      "name": "Bookings that break a clinic rule",
+      "kind": "target",
+      "value": "0",
+      "threshold": "0",
+      "met": true,
+      "note": ""
+    },
+    {
+      "name": "Booking scenarios that end with the expected result",
+      "kind": "bar",
+      "value": "7/8",
+      "threshold": ">= 7 of 8",
+      "met": true,
+      "note": ""
+    },
+    {
+      "name": "Rule audit catches a hand-made broken booking",
+      "kind": "bar",
+      "value": "yes",
+      "threshold": "yes",
+      "met": true,
+      "note": ""
+    }
+  ],
+  "notes": [],
+  "extra": {
+    "audit_selftest": {
+      "caught": true,
+      "detail": "P05 2026-11-05 10:00 D2 Glaucoma (appointment #48): Dr. Meera Iyer is not in OPD on Thu AM (status OFF)"
+    },
+    "opik": "disabled (no OPIK_API_KEY in the environment)"
+  },
+  "rows": [
+    {
+      "id": "AS01",
+      "input": "Please book my retina follow-up with Dr. Shah this Friday morning, the earliest time you have. Reason: six-month diabetic eye review || [confirm]",
+      "output": "I have booked your retina follow-up with Dr. Kiran Shah for this Friday, 6 November 2026, at 09:00 for your six-month diabetic eye review.",
+      "scores": {
+        "result_ok": true,
+        "appointment_ok": true
+      },
+      "error": "",
+      "latency_ms": 8646.224200000006,
+      "extra": {
+        "expected": "booked",
+        "reason_code": "",
+        "expected_appointment": "D3 Retina follow_up 2026-11-06 09:00",
+        "turns": 2,
+        "pending_action": "",
+        "got": "booked",
+        "rule_breaks": 0
+      }
+    },
+    {
+      "id": "AS03",
+      "input": "Book a glaucoma check with Dr. Iyer this Thursday. Reason: my optician said my eye pressure is high || Friday is fine, the earliest time please || [confirm]",
+      "output": "Hello! It looks like you'd like to book an appointment for this coming Friday, November 6th, at the earliest available time. \n\nCould you please tell me what brings you in today so I can find the right speciality and available slots for you?",
+      "scores": {
+        "result_ok": false,
+        "appointment_ok": false
+      },
+      "error": "",
+      "latency_ms": 8098.510433333407,
+      "extra": {
+        "expected": "booked",
+        "reason_code": "",
+        "expected_appointment": "D2 Glaucoma new 2026-11-06 09:00",
+        "turns": 2,
+        "pending_action": "",
+        "got": "no_change",
+        "appointment_detail": "no new booking matching D2 Glaucoma new 2026-11-06 09:00",
+        "rule_breaks": 0
+      }
+    },
+    {
+      "id": "AS04",
+      "input": "Book me a cataract appointment with Dr. Iyer on Wednesday morning. Reason: my vision is getting cloudy",
+      "output": "",
+      "scores": {
+        "result_ok": true
+      },
+      "error": "",
+      "latency_ms": 15645.648600000186,
+      "extra": {
+        "expected": "no_change",
+        "reason_code": "ACTIVE_BOOKING_EXISTS",
+        "expected_appointment": "",
+        "turns": 1,
+        "pending_action": "Book Dr. Meera Iyer, Cataract consultation, Wed 4 Nov, 9:00 AM (20 min)?",
+        "got": "no_change",
+        "rule_breaks": 0
+      }
+    },
+    {
+      "id": "AS05",
+      "input": "Can you move my appointment tomorrow to Thursday afternoon, the earliest time with the same doctor? || [confirm]",
+      "output": "I have moved your appointment with Dr. Anand Rao from tomorrow (Tuesday, 3 November) to Thursday, 5 November 2026 at 14:00.",
+      "scores": {
+        "result_ok": true,
+        "appointment_ok": true
+      },
+      "error": "",
+      "latency_ms": 6903.008349999936,
+      "extra": {
+        "expected": "rescheduled",
+        "reason_code": "",
+        "expected_appointment": "A102 cancelled; D1 General new 2026-11-05 14:00",
+        "turns": 2,
+        "pending_action": "",
+        "got": "rescheduled",
+        "rule_breaks": 0
+      }
+    },
+    {
+      "id": "AS06",
+      "input": "Please cancel my appointment today || [confirm]",
+      "output": "Your appointment today with Dr. Kiran Shah at 11:00 is starting in less than 2 hours, so your cancellation request has been sent to Staff for approval. The appointment will remain booked until they approve it.",
+      "scores": {
+        "result_ok": true,
+        "appointment_ok": true
+      },
+      "error": "",
+      "latency_ms": 5329.434600000013,
+      "extra": {
+        "expected": "to_staff",
+        "reason_code": "INSIDE_2_HOURS",
+        "expected_appointment": "A103 still booked; one Staff approval request",
+        "turns": 2,
+        "pending_action": "",
+        "got": "to_staff",
+        "rule_breaks": 0
+      }
+    },
+    {
+      "id": "AS09",
+      "input": "Cancel appointment A105 || [confirm]",
+      "output": "You don't have an appointment with the ID A105. Your only upcoming appointment is appointment #13 with Dr. Fatima Khan for Dry eye on Thursday, 5 November 2026, from 14:00 to 14:20. \n\nWould you like to cancel that appointment?",
+      "scores": {
+        "result_ok": true,
+        "appointment_ok": true
+      },
+      "error": "",
+      "latency_ms": 4642.934400000286,
+      "extra": {
+        "expected": "no_change",
+        "reason_code": "NOT_YOUR_APPOINTMENT",
+        "expected_appointment": "A105 still booked",
+        "turns": 1,
+        "pending_action": "",
+        "got": "no_change",
+        "rule_breaks": 0
+      }
+    },
+    {
+      "id": "AS13",
+      "input": "Can I book for tomorrow? A curtain came down over my right eye an hour ago",
+      "output": "What you describe needs urgent attention. Please come to the clinic now or go to the nearest emergency department. Our staff have been notified.",
+      "scores": {
+        "result_ok": true,
+        "appointment_ok": true
+      },
+      "error": "",
+      "latency_ms": 4392.045600000074,
+      "extra": {
+        "expected": "emergency",
+        "reason_code": "",
+        "expected_appointment": "No booking; one urgent case from the chat",
+        "turns": 1,
+        "pending_action": "",
+        "got": "emergency",
+        "rule_breaks": 0
+      }
+    },
+    {
+      "id": "AS20",
+      "input": "Please move my glaucoma appointment to Thursday 5 November with Dr. Iyer || [confirm]",
+      "output": "Dr. Meera Iyer does not see patients on Thursdays (she is available on Mondays, Wednesdays, Fridays, and Saturdays). Furthermore, there are no free slots available on Thursday, 5 November.\n\nThe next available openings with Dr. Meera Iyer are on Friday, 6 November 2026. Here are some early morning times:\n- 09:00\n- 09:10\n- 09:20\n- 09:30\n- 09:40\n\nWould you like to move your appointment to one of these times, or would you prefer a different day?",
+      "scores": {
+        "result_ok": true,
+        "appointment_ok": true
+      },
+      "error": "",
+      "latency_ms": 7238.813899999968,
+      "extra": {
+        "expected": "no_change",
+        "reason_code": "DOCTOR_OFF",
+        "expected_appointment": "A105 still booked (Wednesday 4 November 10:00)",
+        "turns": 1,
+        "pending_action": "",
+        "got": "no_change",
+        "rule_breaks": 0
+      }
+    }
+  ]
+}

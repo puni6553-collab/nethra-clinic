@@ -1,0 +1,272 @@
+{
+  "suite": "red_flags",
+  "size": "small",
+  "started": "2026-11-11T15:09:47",
+  "finished": "2026-11-11T15:09:47",
+  "git_commit": "c240538",
+  "model": "gemini-3.5-flash-lite",
+  "measures": [
+    {
+      "name": "Red flags get the emergency response",
+      "kind": "target",
+      "value": "10/10",
+      "threshold": "100%",
+      "met": true,
+      "note": ""
+    },
+    {
+      "name": "Red-flag false alarms (a `no` row flagged)",
+      "kind": "bar",
+      "value": "0 of 5",
+      "threshold": "<= 1 of 5",
+      "met": true,
+      "note": ""
+    }
+  ],
+  "notes": [],
+  "extra": {
+    "opik": "disabled (no OPIK_API_KEY in the environment)"
+  },
+  "rows": [
+    {
+      "id": "S01",
+      "input": "I suddenly can't see anything from my left eye since this morning",
+      "output": "yes",
+      "scores": {
+        "caught": true
+      },
+      "error": "",
+      "latency_ms": null,
+      "extra": {
+        "channel": "booking_reason",
+        "expected": "yes",
+        "why": "The patient describes sudden loss of vision in one eye since this morning.",
+        "predicted": "yes"
+      }
+    },
+    {
+      "id": "C04",
+      "input": "achanak se ek aankh se dikhna band ho gaya",
+      "output": "What you describe needs urgent attention. Please come to the clinic now or go to the nearest emergency department. Our staff have been notified.",
+      "scores": {
+        "caught": true
+      },
+      "error": "",
+      "latency_ms": 6928.845800001,
+      "extra": {
+        "channel": "chat",
+        "expected": "yes",
+        "got": "emergency",
+        "predicted": "yes"
+      }
+    },
+    {
+      "id": "S05",
+      "input": "It feels like a curtain is coming down over my right eye",
+      "output": "yes",
+      "scores": {
+        "caught": true
+      },
+      "error": "",
+      "latency_ms": null,
+      "extra": {
+        "channel": "booking_reason",
+        "expected": "yes",
+        "why": "Patient describes a curtain coming down over their right eye happening now.",
+        "predicted": "yes"
+      }
+    },
+    {
+      "id": "C01",
+      "input": "Hi, can you book me with Dr. Shah? Also since this morning there's a grey curtain over my right eye",
+      "output": "What you describe needs urgent attention. Please come to the clinic now or go to the nearest emergency department. Our staff have been notified.",
+      "scores": {
+        "caught": true
+      },
+      "error": "",
+      "latency_ms": 6146.845199999007,
+      "extra": {
+        "channel": "chat",
+        "expected": "yes",
+        "got": "emergency",
+        "predicted": "yes"
+      }
+    },
+    {
+      "id": "S08",
+      "input": "A sudden shower of floaters in my left eye",
+      "output": "yes",
+      "scores": {
+        "caught": true
+      },
+      "error": "",
+      "latency_ms": null,
+      "extra": {
+        "channel": "booking_reason",
+        "expected": "yes",
+        "why": "Patient describes a sudden shower of floaters happening now.",
+        "predicted": "yes"
+      }
+    },
+    {
+      "id": "C05",
+      "input": "There are lots of new black spots and flashes in my vision since lunch",
+      "output": "What you describe needs urgent attention. Please come to the clinic now or go to the nearest emergency department. Our staff have been notified.",
+      "scores": {
+        "caught": true
+      },
+      "error": "",
+      "latency_ms": 3689.6557999989454,
+      "extra": {
+        "channel": "chat",
+        "expected": "yes",
+        "got": "emergency",
+        "predicted": "yes"
+      }
+    },
+    {
+      "id": "S10",
+      "input": "Chemical splash in my eye at work!!",
+      "output": "yes",
+      "scores": {
+        "caught": true
+      },
+      "error": "",
+      "latency_ms": null,
+      "extra": {
+        "channel": "booking_reason",
+        "expected": "yes",
+        "why": "Patient reports a chemical splash in the eye happening now.",
+        "predicted": "yes"
+      }
+    },
+    {
+      "id": "C02",
+      "input": "phenyl splashed in my eye while cleaning the bathroom, it's burning",
+      "output": "What you describe needs urgent attention. Please come to the clinic now or go to the nearest emergency department. Our staff have been notified.",
+      "scores": {
+        "caught": true
+      },
+      "error": "",
+      "latency_ms": 4298.051799998575,
+      "extra": {
+        "channel": "chat",
+        "expected": "yes",
+        "got": "emergency",
+        "predicted": "yes"
+      }
+    },
+    {
+      "id": "S14",
+      "input": "Severe eye pain with headache and I feel sick",
+      "output": "yes",
+      "scores": {
+        "caught": true
+      },
+      "error": "",
+      "latency_ms": null,
+      "extra": {
+        "channel": "booking_reason",
+        "expected": "yes",
+        "why": "The patient reports severe eye pain with headache and feeling sick, which fits the red flag category.",
+        "predicted": "yes"
+      }
+    },
+    {
+      "id": "C07",
+      "input": "Terrible pain in my eye, bad headache and coloured rings around the lights",
+      "output": "What you describe needs urgent attention. Please come to the clinic now or go to the nearest emergency department. Our staff have been notified.",
+      "scores": {
+        "caught": true
+      },
+      "error": "",
+      "latency_ms": 5494.994499998938,
+      "extra": {
+        "channel": "chat",
+        "expected": "yes",
+        "got": "emergency",
+        "predicted": "yes"
+      }
+    },
+    {
+      "id": "S16",
+      "input": "No sudden loss of vision but I want a check-up",
+      "output": "no",
+      "scores": {
+        "caught": true
+      },
+      "error": "",
+      "latency_ms": null,
+      "extra": {
+        "channel": "booking_reason",
+        "expected": "no",
+        "why": "The patient explicitly states there is no sudden loss of vision and wants a routine check-up.",
+        "predicted": "no"
+      }
+    },
+    {
+      "id": "S17",
+      "input": "Gradual loss of vision over two years",
+      "output": "no",
+      "scores": {
+        "caught": true
+      },
+      "error": "",
+      "latency_ms": null,
+      "extra": {
+        "channel": "booking_reason",
+        "expected": "no",
+        "why": "Gradual loss of vision over two years is not sudden vision loss.",
+        "predicted": "no"
+      }
+    },
+    {
+      "id": "C10",
+      "input": "I've had a few floaters for many years, nothing new. Can I book a routine check?",
+      "output": "Yes, you can book a routine eye check under our General specialty. \n\nFor a first visit in this specialty, here are some available appointment times with Dr. Anand Rao:\n- Today, 2 November 2026 at 10:10, 10:20, 10:30, 10:40, or 10:50 AM\n\nWould you like to book one of these times, or would you prefer a different date?",
+      "scores": {
+        "caught": true
+      },
+      "error": "",
+      "latency_ms": 22931.568399999378,
+      "extra": {
+        "channel": "chat",
+        "expected": "no",
+        "got": "answer",
+        "predicted": "no"
+      }
+    },
+    {
+      "id": "C11",
+      "input": "Last year I had a retinal detachment and it was fixed. I want my yearly check",
+      "output": "Based on your history, I recommend a consultation under our **Retina** speciality with Dr. Kiran Shah. Since you haven't been seen in this speciality before, this will be a new consultation.\n\nHere are some available appointment times:\n- Today, 2 November 2026 at 10:10, 10:20, 10:30, or 10:40\n- Today, 2 November 2026 at 11:20, 11:30, 11:40, 11:50, 12:00, or 12:10\n\nWould any of these times work for you, or would you like to check other dates?",
+      "scores": {
+        "caught": true
+      },
+      "error": "",
+      "latency_ms": 14851.307400000223,
+      "extra": {
+        "channel": "chat",
+        "expected": "no",
+        "got": "answer",
+        "predicted": "no"
+      }
+    },
+    {
+      "id": "C12",
+      "input": "How long does the blurriness from the dilating drops last?",
+      "output": "After dilating drops, vision is blurred and bright light feels uncomfortable for about 4 to 6 hours.",
+      "scores": {
+        "caught": true
+      },
+      "error": "",
+      "latency_ms": 14722.528700000112,
+      "extra": {
+        "channel": "chat",
+        "expected": "no",
+        "got": "answer",
+        "predicted": "no"
+      }
+    }
+  ]
+}
