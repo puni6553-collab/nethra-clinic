@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # NetraCare — Clinic Booking + Patient Chat (iterations 1–6)
 
 A working booking website for the fictional NetraCare eye clinic, with **every
@@ -606,3 +607,6 @@ Set these as environment variables before starting the backend:
 - **Out of scope:** Docker, reranking and score scripts (stretch goals).
   Rescheduling, the Staff approval queue and doctor leave (R1 / R7) *are*
   implemented — see `check_approvals.py` and `check_leave.py` above.
+=======
+# nethra-clinic
+>>>>>>> adcdf1c08e53914391dfb9ddf486ce7c95f479c2
